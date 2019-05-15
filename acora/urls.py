@@ -8,6 +8,7 @@ from .views import actualizarPuntaje
 from .views import finalizarPartida
 from .views import getTemporizador
 from .views import getRanking
+from .views import CPartida
 from django.http import HttpResponse
 
 urlpatterns = [ 
