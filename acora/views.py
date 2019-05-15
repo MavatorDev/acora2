@@ -85,8 +85,8 @@ class actualizarPuntaje(APIView):
      
     def post(self,request,foo):
      
-     if (Equipo.objects.filter(nombre=foo)).exists():
-      dato=get_object_or_404(Equipo, nombre=foo)
+     if (Equipo.objects.filter(cod=foo)).exists():
+      dato=get_object_or_404(Equipo, cod=foo)
        
       serializer=PostAPuntaje(data=request.data,instance=dato)
       if serializer.is_valid():
