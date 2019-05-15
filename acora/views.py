@@ -91,7 +91,7 @@ class actualizarPuntaje(APIView):
       serializer=PostAPuntaje(data=request.data,instance=dato)
       if serializer.is_valid():
              
-            serializer.save(puntaje=Equipo.objects.get(nombre=foo).puntaje + request.data["puntaje"])
+            serializer.save(puntaje=Equipo.objects.get(cod=foo).puntaje + request.data["puntaje"])
       
             return Response("aceptado")
      else:
