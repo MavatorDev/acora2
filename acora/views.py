@@ -25,10 +25,17 @@ class equiposPartida(APIView):
     def post(self,request,foo):
         serializer=PostcEquipo(data=request.data)
         if serializer.is_valid():
-           foo=get_object_or_404(Partida, codigo=foo)
-           serializer.save(codigo=foo)     
-           return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+           if Partida.objects.filter(codigo=foo).exists():
+               if Equipo.objects.filter(codigo=foo, nombre=request.data["nombre"]).exists():
+                   return Response("nombreExiste")
+               else:
+                  foo=get_object_or_404(Partida, codigo=foo)
+                  serializer.save(codigo=foo)  
+                  return Response("aceptado")
+           else: 
+            return Response("codigoFail")
+        else:
+            return Response("unknownFail")
 
 class crearPartida(APIView):
  
@@ -36,8 +43,9 @@ class crearPartida(APIView):
          serializer=sPartida(data=request.data)
          if serializer.is_valid():
             serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response("aceptado")
+         else:
+            return Response("unknownFail")
 
 class login(APIView):
      
@@ -62,7 +70,7 @@ class iniciarPartida(APIView):
      if (Partida.objects.filter(codigo=foo)).exists():
       dato=get_object_or_404(Partida, codigo=foo)
       dato.temporizador=request.data
-      return Response("empezar")
+      return Response("aceptado")
      else:
       return Response("rechazado")
 
@@ -94,7 +102,7 @@ class finalizarPartida(APIView):
     def get(self,request,foo):
      if (Partida.objects.filter(codigo=foo)).exists(): 
       u=Partida.objects.get(codigo=foo).delete()
-      return Response("eliminado")
+      return Response("aceptado")
      else:
       return Response("rechazado")
 
