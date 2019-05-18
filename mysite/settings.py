@@ -125,7 +125,7 @@ ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
 EMAIL_HOST= 'smtp.gmail.com'
 EMAIL_PORT= 587
-EMAIL_HOST_USER= 'manuevalencia99@gmail.com'
-EMAIL_HOST_PASSWORD='99081103972m'
+EMAIL_HOST_USER= 'acora.app@gmail.com'
+EMAIL_HOST_PASSWORD='acora123'
 EMAIL_USE_TLS=True
 EMAIL_USE_SSL=False
