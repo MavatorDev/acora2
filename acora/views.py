@@ -151,7 +151,7 @@ class getRanking(APIView):
 
     def get(self,request,foo):
       if (Partida.objects.filter(codigo=foo)).exists():
-       equipos= Equipo.objects.filter(codigo=foo).order_by('-puntaje').values_list('cod','nombre','puntaje')
+       equipos= Equipo.objects.filter(codigo=foo).order_by('-puntaje').values_list('nombre','puntaje')
        equipos=list(equipos) 
        return Response(equipos)
       else:
