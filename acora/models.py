@@ -28,4 +28,4 @@ class Comentarios(models.Model):
     idComentario= models.CharField(max_length=200, default='esto es un comentario')
     puntuacionUno= models.IntegerField(default=0)
     puntuacionDos= models.IntegerField(default=0)
-    puntuacionTres= models.IntegerField(default=0)
+    puntuacionTres= models.CharField(max_length=500,default='na')

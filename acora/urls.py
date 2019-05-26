@@ -11,6 +11,7 @@ from .views import getRanking
 from .views import CPartida
 from .views import getEstado
 from .views import send
+from .views import comentario
 from django.http import HttpResponse
 
 urlpatterns = [ 
@@ -26,5 +27,6 @@ urlpatterns = [
         path('CPartida/<slug:foo>',CPartida.as_view(), name='CPartida'),
         path('getEstado/<slug:foo>',getEstado.as_view(),name='getEstado'),
         path('send/<slug:foo>',send.as_view(),name='send'),
+        path('comentario',comentario.as_view(),name='comentario'),
         ]
 	

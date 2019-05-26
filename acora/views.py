@@ -14,6 +14,7 @@ from .serializers import PostIPartida
 from .serializers import PostAPuntaje
 from .serializers import PostCodigos
 from .serializers import sendEmail
+from .serializers import PostComentario
 from django.core.mail import send_mail
 
 
@@ -29,6 +30,14 @@ class send(APIView):
        return Response("rechazado")
       
        
+class comentario(APIView):
+    def post(self,request):
+        serializer=PostComentario(data=request.data)
+        if serializer.is_valid():
+          serializer.save()
+          return Response("aceptado")
+        else:
+          return Response("fallo")
 
 class equiposPartida(APIView):
 
