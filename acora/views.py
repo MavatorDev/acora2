@@ -24,6 +24,8 @@ class send(APIView):
        
        equipos= Equipo.objects.filter(codigo=foo).order_by('-puntaje').values_list('nombre','puntaje')
        equiposs= str(equipos)
+       i=len(equiposs)
+       equiposs=equiposs[10:i-1]
        send_mail('Ranking carrera de observacion Acora', 'Estos son los resultados: \r\n ' + equiposs, 'acora.app@gmail.com',[request.data["idRanking"]],fail_silently=False)
        return Response("aceptado")
      else:
